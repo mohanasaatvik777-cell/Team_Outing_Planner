@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Team Outing Planner 🎉</title>
+  <link rel="stylesheet" href="/static/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+</head>
+<body>
+
+  <!-- Animated Background Particles -->
+  <div class="particles" id="particles"></div>
+
+  <!-- Hero Section -->
+  <header class="hero">
+    <div class="hero-content">
+      <div class="badge">🤖 AI-Powered</div>
+      <h1 class="hero-title">
+        Team Outing<br/>
+        <span class="gradient-text">Planner</span>
+      </h1>
+      <p class="hero-sub">No more endless group chats. Let AI plan your perfect day out in Hyderabad.</p>
+      <div class="hero-stats">
+        <div class="stat"><span class="stat-num" id="memberCount">0</span><span class="stat-label">Members Added</span></div>
+        <div class="stat-divider"></div>
+        <div class="stat"><span class="stat-num">₹800</span><span class="stat-label">Budget/Person (Fixed)</span></div>
+        <div class="stat-divider"></div>
+        <div class="stat"><span class="stat-num">40km</span><span class="stat-label">Max Distance</span></div>
+      </div>
+    </div>
+    <div class="hero-illustration">
+      <div class="floating-card fc1">🏔️ Ananthagiri Hills</div>
+      <div class="floating-card fc2">🎬 Ramoji Film City</div>
+      <div class="floating-card fc3">🌊 Hussain Sagar</div>
+      <div class="hero-circle">
+        <span>🗺️</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main App -->
+  <main class="app-container">
+
+
+
+    <!-- Step 1: Add Members -->
+    <section class="section" id="step1">
+      <div class="section-header">
+        <div class="step-badge">Step 1</div>
+        <h2>Add Team Members</h2>
+        <p>Each member enters their preferences below</p>
+      </div>
+
+      <div class="form-card">
+
+        <!-- Card Top Accent -->
+        <div class="form-card-accent"></div>
+
+        <div class="form-card-inner">
+
+          <!-- Name Row -->
+          <div class="fc-row">
+            <div class="fc-field-icon">👤</div>
+            <div class="fc-field">
+              <div class="fc-label">Your Name</div>
+              <input type="text" id="memberName" class="fc-input" placeholder="e.g. Priya Sharma" autocomplete="off"/>
+            </div>
+          </div>
+
+          <div class="fc-divider"></div>
+
+          <!-- Food Preference Row -->
+          <div class="fc-row">
+            <div class="fc-field-icon">🍽️</div>
+            <div class="fc-field">
+              <div class="fc-label">Food Preference</div>
+              <div class="fc-pill-group">
+                <label class="fc-pill">
+                  <input type="radio" name="food" value="veg" checked/>
+                  <span>🥗 Vegetarian</span>
+                </label>
+                <label class="fc-pill">
+                  <input type="radio" name="food" value="non_veg"/>
+                  <span>🍖 Non-Veg</span>
+                </label>
+                <label class="fc-pill">
+                  <input type="radio" name="food" value="both"/>
+                  <span>🍽️ Both</span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="fc-divider"></div>
+
+          <!-- Activity Preference Row -->
+          <div class="fc-row fc-row-wrap">
+            <div class="fc-field-icon">🎯</div>
+            <div class="fc-field">
+              <div class="fc-label">Activity Preferences <span class="fc-hint">pick 2–3</span></div>
+              <div class="fc-activity-grid">
+                <label class="fc-activity-pill"><input type="checkbox" name="activity" value="adventure"/><span>🧗 Adventure</span></label>
+                <label class="fc-activity-pill"><input type="checkbox" name="activity" value="nature"/><span>🌿 Nature</span></label>
+                <label class="fc-activity-pill"><input type="checkbox" name="activity" value="entertainment"/><span>🎭 Entertainment</span></label>
+                <label class="fc-activity-pill"><input type="checkbox" name="activity" value="leisure"/><span>🌅 Leisure</span></label>
+                <label class="fc-activity-pill"><input type="checkbox" name="activity" value="spiritual"/><span>🛕 Spiritual</span></label>
+                <label class="fc-activity-pill"><input type="checkbox" name="activity" value="food_tour"/><span>🍜 Food Tour</span></label>
+                <label class="fc-activity-pill"><input type="checkbox" name="activity" value="sports"/><span>⚽ Sports</span></label>
+                <label class="fc-activity-pill"><input type="checkbox" name="activity" value="cultural"/><span>🏛️ Cultural</span></label>
+                <label class="fc-activity-pill"><input type="checkbox" name="activity" value="photography"/><span>📸 Photography</span></label>
+                <label class="fc-activity-pill"><input type="checkbox" name="activity" value="wellness"/><span>🧘 Wellness</span></label>
+              </div>
+              <div id="activityError" class="fc-error">⚠️ Please select 2 to 3 activities</div>
+            </div>
+          </div>
+
+          <div class="fc-divider"></div>
+
+          <!-- Budget Row -->
+          <div class="fc-row">
+            <div class="fc-field-icon">💰</div>
+            <div class="fc-field">
+              <div class="fc-label">Budget Per Person</div>
+              <div class="fc-budget-badge">₹800 <span>fixed</span></div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Add Button -->
+        <div class="fc-footer">
+          <div class="fc-footer-info">Fill in your details above and join the team</div>
+          <button class="fc-add-btn" onclick="addMember()">
+            <span class="fc-add-icon">+</span>
+            <span>Add Member</span>
+          </button>
+        </div>
+
+      </div>
+
+      <!-- Members List -->
+      <div class="members-grid" id="membersGrid"></div>
+
+      <!-- Member Counter -->
+      <div id="memberCounter" style="text-align:center;margin:16px 0;font-size:0.9rem;color:var(--text-muted);transition:color 0.3s"></div>
+
+      <!-- Generate Button -->
+      <div class="generate-section" id="generateSection" style="display:none">
+        <div class="team-summary glass">
+          <span>👥 <strong id="teamSize">0</strong> members ready</span>
+          <span id="foodSummary">🥗 Mixed preferences</span>
+        </div>
+        <button class="btn btn-generate" onclick="generatePlans()">
+          <span class="btn-icon">🤖</span>
+          <span>Generate AI Plans</span>
+          <span class="btn-arrow">→</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- Loading -->
+    <div class="loading-overlay" id="loadingOverlay" style="display:none">
+      <div class="loading-box">
+        <div class="ai-brain">🧠</div>
+        <div class="loading-text">AI is thinking...</div>
+        <div class="loading-steps" id="loadingSteps">
+          <div class="load-step active">📍 Scanning venues near Hyderabad</div>
+          <div class="load-step">🍽️ Matching food preferences</div>
+          <div class="load-step">💰 Calculating cost breakdowns</div>
+          <div class="load-step">✨ Crafting perfect plans</div>
+        </div>
+        <div class="loading-bar"><div class="loading-fill" id="loadingFill"></div></div>
+      </div>
+    </div>
+
+    <!-- Step 2: Results -->
+    <section class="section" id="resultsSection" style="display:none">
+      <div class="section-header">
+        <div class="step-badge">Step 2</div>
+        <h2>Your AI-Generated Plans</h2>
+        <p>Tailored for your team's preferences and budget</p>
+      </div>
+      <div class="plans-container" id="plansContainer"></div>
+      <div class="actions-row">
+        <button class="btn btn-outline" onclick="resetPlanner()">
+          <i class="fas fa-redo"></i> Start Over
+        </button>
+        <button class="btn btn-primary" onclick="printPlans()">
+          <i class="fas fa-print"></i> Print Plans
+        </button>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Print Modal -->
+  <div class="modal-overlay" id="printModal" style="display:none">
+    <div class="modal-box glass">
+      <div class="modal-title">🖨️ Select Plans to Print</div>
+      <div class="modal-sub">Choose which plans you want to print</div>
+      <div class="modal-options" id="printOptions"></div>
+      <div class="modal-actions">
+        <button class="btn btn-outline" onclick="closePrintModal()">Cancel</button>
+        <button class="btn btn-primary" onclick="confirmPrint()"><i class="fas fa-print"></i> Print Selected</button>
+      </div>
+    </div>
+  </div>
+  <div class="toast" id="toast"></div>
+
+  <footer class="footer">
+    <p>Built with ❤️ for Team Outings in Hyderabad &nbsp;|&nbsp; 🤖 AI-Powered Planner</p>
+  </footer>
+
+  <script src="/static/script.js"></script>
+</body>
+</html>
