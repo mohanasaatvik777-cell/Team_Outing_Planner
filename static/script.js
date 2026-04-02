@@ -212,6 +212,10 @@ async function generatePlans() {
 
     setTimeout(() => {
       overlay.style.display = 'none';
+      if (!data.plans || data.plans.length === 0) {
+        showToast('❌ Could not generate plans. Please try again!');
+        return;
+      }
       renderPlans(data.plans);
       document.getElementById('resultsSection').style.display = 'block';
       document.getElementById('resultsSection').scrollIntoView({ behavior: 'smooth' });
